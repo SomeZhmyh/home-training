@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\HomeTraining\\HomeTraining\\HomeTraining.csproj",
+      "projectUniqueName": "D:\\Projects\\HomeTraining\\HomeTraining\\HomeTraining\\HomeTraining.csproj",
       "projectName": "HomeTraining",
-      "projectPath": "D:\\Projects\\HomeTraining\\HomeTraining\\HomeTraining.csproj",
+      "projectPath": "D:\\Projects\\HomeTraining\\HomeTraining\\HomeTraining\\HomeTraining.csproj",
       "packagesPath": "C:\\Users\\veron\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\HomeTraining\\HomeTraining\\obj\\",
+      "outputPath": "D:\\Projects\\HomeTraining\\HomeTraining\\HomeTraining\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\veron\\AppData\\Roaming\\NuGet\\NuGet.Config",
