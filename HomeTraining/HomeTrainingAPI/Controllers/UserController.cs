@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
@@ -8,7 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
 using HomeTrainingAPI;
-
+using System.Net.Mail;
 
 namespace WebApplication1.Controllers
 {
@@ -16,21 +15,22 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        string _connectionString;
+        private string _connectionString;
         public UserController(IConfiguration configuration)
         {
             _connectionString = configuration["ConnectionStrings:DefaultConnection"];
         }
-        [HttpGet("/login/{username}")]
-        public GetLoginResponse Login(string username)
+        [HttpPost("/login")]
+        public GetLoginResponse Login(LoginModel model)
         {
             string querry = $@"
             
-            SELECT ""Users"".""Username"", """", array_agg(""Role"".""Name"")
-            FROM ""Users""
+            SELECT ""User"".""Username"" AS ""Login"", '' AS ""Token"", array_agg(""Role"".""Name"") AS ""Roles""
+            FROM ""User""
             INNER JOIN ""UserRole"" ON ""User"".""Id"" = ""UserRole"".""UserId""
             INNER JOIN ""Role"" ON ""Role"".""Id"" = ""UserRole"".""RoleId""
-            GROUP BY ""Users"".""Username""            
+            WHERE ""User"".""Username"" = '{model.Username}' AND ""User"".""Password"" = '{model.Password}'
+            GROUP BY ""User"".""Username""            
             ";
             GetLoginResponse res;
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
@@ -38,7 +38,7 @@ namespace WebApplication1.Controllers
                 res = db.Query<GetLoginResponse>(querry).FirstOrDefault();
             }
 
-            var claims = new List<Claim> { new Claim(ClaimTypes.Name, username) };
+            var claims = new List<Claim> { new Claim(ClaimTypes.Name, model.Username) };
             // создаем JWT-токен
             var jwt = new JwtSecurityToken(
                     issuer: AuthOptions.ISSUER,
@@ -60,10 +60,11 @@ namespace WebApplication1.Controllers
         [HttpPost("/register")]
         public void Register(RegisterModel registerModel)
         {
-string querry = $@"
+            int code = 0; //#TODO сюда вернуть EmailService.SendConfirmCode()
+            string querry = $@"
             
             INSERT INTO ""User"" (""Username"", ""Password"", ""Email"", ""EmailConfirmed"", ""ConfirmCode"")
-            VALUES ({registerModel.Username}, {registerModel.Password}, {registerModel.Email}, false, 0)  
+            VALUES ('{registerModel.Username}', '{registerModel.Password}', '{registerModel.Email}', false, {code})  
             RETURNING ""Id"";
             ";
             int id;
@@ -86,9 +87,42 @@ string querry = $@"
         {
             public string Username {get; set;}
             public string Password {get; set;}
-
             public string Email {get; set;}
 
+        }
+        public class LoginModel
+        {
+            public string Username { get; set; }
+            public string Password { get; set; }
+        }
+        public class EmailService
+        {
+            //#TODO подкинуть IConfiguration в ctor; добавить в IConf почту и пароль приложения 
+            public int SendConfirmCode(string email)
+            {
+                int code = Random.Shared.Next(1111, 99999);
+                /*#TODO оформить отправку письма
+                // отправитель - устанавливаем адрес и отображаемое в письме имя
+                MailAddress from = new MailAddress("somemail@gmail.com", "Tom");
+                // кому отправляем
+                MailAddress to = new MailAddress("somemail@yandex.ru");
+                // создаем объект сообщения
+                MailMessage m = new MailMessage(from, to);
+                // тема письма
+                m.Subject = "Тест";
+                // текст письма
+                m.Body = "<h2>Письмо-тест работы smtp-клиента</h2>";
+                // письмо представляет код html
+                m.IsBodyHtml = true;
+                // адрес smtp-сервера и порт, с которого будем отправлять письмо
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                // логин и пароль используя IConfiguration
+                smtp.Credentials = new NetworkCredential("somemail@gmail.com", "mypassword");
+                smtp.EnableSsl = true;
+                smtp.Send(m);
+                */
+                return code;
+            }
         }
     }
 }

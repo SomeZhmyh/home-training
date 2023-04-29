@@ -1257,19 +1257,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\veron\\.nuget\\packages\\": {}
+    "C:\\Users\\ist_7\\.nuget\\packages\\": {},
+    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\HomeTraining\\HomeTraining\\HomeTrainingAPI\\HomeTrainingAPI.csproj",
+      "projectUniqueName": "D:\\Projects\\home-training\\HomeTraining\\HomeTrainingAPI\\HomeTrainingAPI.csproj",
       "projectName": "HomeTrainingAPI",
-      "projectPath": "D:\\Projects\\HomeTraining\\HomeTraining\\HomeTrainingAPI\\HomeTrainingAPI.csproj",
-      "packagesPath": "C:\\Users\\veron\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\HomeTraining\\HomeTraining\\HomeTrainingAPI\\obj\\",
+      "projectPath": "D:\\Projects\\home-training\\HomeTraining\\HomeTrainingAPI\\HomeTrainingAPI.csproj",
+      "packagesPath": "C:\\Users\\ist_7\\.nuget\\packages\\",
+      "outputPath": "D:\\Projects\\home-training\\HomeTraining\\HomeTrainingAPI\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\veron\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ist_7\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1334,7 +1339,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
