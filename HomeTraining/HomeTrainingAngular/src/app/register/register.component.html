@@ -1,0 +1,16 @@
+<p>register works!</p>
+<p>Логин</p>
+<input type="text" [(ngModel)]="login" />
+<p>Почта</p>
+<input type="text" [(ngModel)]="email" />
+<p>Пароль</p>
+<input type="text" [(ngModel)]="password" />
+<br/>
+<br/>
+<button name="reg" (click)="register()">Жамкай сюда, чтобы регнуться</button>
+
+<div *ngIf="isNeedToConfirm">
+  <p>Код подтверждения</p>
+  <input type="text" [(ngModel)]="code" />
+  <button name="confirm" (click)="confirm()">Жамкай сюда, чтобы подтвердить</button>
+</div>

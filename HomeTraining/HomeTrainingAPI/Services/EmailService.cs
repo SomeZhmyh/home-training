@@ -14,7 +14,7 @@ namespace HomeTrainingAPI.Services
         //#TODO подкинуть IConfiguration в ctor; добавить в IConf почту и пароль приложения 
         public int SendConfirmCode(string email)
         {
-            int code = Random.Shared.Next(1111, 9999);
+            int code = Random.Shared.Next(1000, 9999);
             /*#TODO оформить отправку письма
             // отправитель - устанавливаем адрес и отображаемое в письме имя
             MailAddress from = new MailAddress("somemail@gmail.com", "Tom");

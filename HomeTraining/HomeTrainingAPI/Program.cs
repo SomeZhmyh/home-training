@@ -34,6 +34,15 @@ builder.Services.AddSwaggerGen(option =>
         }
     });
 });
+
+builder.Services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader()
+           .AllowCredentials()
+           .WithOrigins("http://localhost:4200");
+}));
 #region Srvices
 builder.Services.AddScoped<IEmailService, EmailService>();
 #endregion
@@ -72,6 +81,7 @@ if (app.Environment.IsDevelopment())
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
 
 app.MapControllers();
