@@ -9,6 +9,7 @@ using HomeTrainingAPI.Models;
 using HomeTrainingAPI;
 
 using System.Net.Mail;
+using HomeTrainingAPI.Services;
 
 namespace WebApplication1.Controllers
 {
@@ -17,9 +18,11 @@ namespace WebApplication1.Controllers
     public class UserController : ControllerBase
     {
         private string _connectionString;
-        public UserController(IConfiguration configuration)
+        private IEmailService _emailService;
+        public UserController(IConfiguration configuration, IEmailService emailService)
         {
             _connectionString = configuration["ConnectionStrings:DefaultConnection"];
+            _emailService = emailService;
         }
         [HttpPost("/login")]
         public GetLoginResponse Login(LoginModel model)
@@ -61,7 +64,7 @@ namespace WebApplication1.Controllers
         [HttpPost("/register")]
         public void Register(RegisterModel registerModel)
         {
-            int code = 0; //#TODO сюда вернуть EmailService.SendConfirmCode()
+            int code = _emailService.SendConfirmCode(registerModel.Email); //#TODO сюда вернуть EmailService.SendConfirmCode()
             string querry = $@"
             
             INSERT INTO ""User"" (""Username"", ""Password"", ""Email"", ""EmailConfirmed"", ""ConfirmCode"")
@@ -83,6 +86,27 @@ namespace WebApplication1.Controllers
             {
                 db.Query(querry);
             }
+        }
+
+        [HttpPost("/confirmEmail")]
+        public bool ConfirmEmail(ConfirmEmailModel confirmEmailModel)
+        {
+            int id =0;
+            string querry = $@"
+            UPDATE ""User"" SET ""EmailConfirmed"" = true
+WHERE ""ConfirmCode""={confirmEmailModel.ConfirmCode}
+AND ""Email""='{confirmEmailModel.Email}'
+AND ""Password""='{confirmEmailModel.Password}'
+RETURNING ""Id"";
+            ";
+
+            using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
+            {
+                id = db.Query<int>(querry).FirstOrDefault();
+            }
+            if (id == 0)
+                return false;
+            return true;
         }
     }
 }

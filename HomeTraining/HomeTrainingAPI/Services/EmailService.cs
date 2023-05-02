@@ -4,15 +4,17 @@ namespace HomeTrainingAPI.Services
 {
     public class EmailService: IEmailService
     {
-        private string _connectionString;
+        private string _email;
+        private string _password;
         public EmailService(IConfiguration configuration)
         {
-           // _connectionString = configuration["ConnectionStrings:DefaultConnection"];
+            _email = configuration["EmailSender:Address"];
+            _password = configuration["EmailSender:Password"];
         }
         //#TODO подкинуть IConfiguration в ctor; добавить в IConf почту и пароль приложения 
         public int SendConfirmCode(string email)
         {
-            int code = Random.Shared.Next(1111, 99999);
+            int code = Random.Shared.Next(1111, 9999);
             /*#TODO оформить отправку письма
             // отправитель - устанавливаем адрес и отображаемое в письме имя
             MailAddress from = new MailAddress("somemail@gmail.com", "Tom");
