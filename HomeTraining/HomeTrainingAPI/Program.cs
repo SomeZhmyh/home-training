@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using HomeTrainingAPI;
+using HomeTrainingAPI.Services;
 
 var builder = WebApplication.CreateBuilder();
 builder.Services.AddSwaggerGen(option =>
@@ -32,6 +34,9 @@ builder.Services.AddSwaggerGen(option =>
         }
     });
 });
+#region Srvices
+builder.Services.AddScoped<IEmailService, EmailService>();
+#endregion
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 builder.Services.AddAuthorization();
@@ -72,12 +77,4 @@ app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();
 
-public class AuthOptions
-{
-    public const string ISSUER = "MyAuthServer"; // издатель токена
-    public const string AUDIENCE = "MyAuthClient"; // потребитель токена
-    const string KEY = "mysupersecret_secretkey!123";   // ключ для шифрации
-    public static SymmetricSecurityKey GetSymmetricSecurityKey() =>
-        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(KEY));
-}
 
