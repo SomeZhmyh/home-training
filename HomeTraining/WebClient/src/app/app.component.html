@@ -1,0 +1,101 @@
+
+<body [class]="storageService.OS.S.theme.obs | async">
+  <mat-sidenav-container class="example-container" >
+    <mat-sidenav #sidenav mode="side">
+
+      <div layout="vertical" layout-fill>
+
+        <p><button mat-button (click)="sidenav.toggle()">Закрыть меню</button></p>
+        <button mat-button (click)="changeTheme()" >Изменить тему</button>
+
+        <mat-nav-list>
+          <a routerLink="/progress">Базинга</a> <br />
+          <a routerLink="/login">Авторизация</a> <br />
+          <a routerLink="/register">Регистрация</a> <br />
+          <a routerLink="/profile">Профиль</a> <br />
+          <a routerLink="/about">О нас</a> <br />
+          <a routerLink="/add-exercises">Добавить анжуманя</a> <br />
+          <a routerLink="/add-program">Добавить программу</a> <br />
+          <!-- <a routerLink="/groupManager">Менеджер групп</a> <br />
+   <a routerLink="/teacherManager">Менеджер преподавателей</a> <br />
+   <a routerLink="/disciplineManager">Менеджер дисциплин(предметов)</a> <br />
+   <a routerLink="/studentManager">Менеджер студентов</a> <br />
+   <a routerLink="/lessonManager">Менеджер занятий(пар)</a> <br />
+   <a routerLink="/visitorManager">Менеджер посещений</a> <br />
+   <a routerLink="/reportManager">Отчеты</a> <br />
+   <a routerLink="#">В разработке...</a> <br />
+    -->
+        </mat-nav-list>
+
+
+      </div>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+      <h2>Электронный журнал старосты</h2>
+      <p><button mat-button (click)="sidenav.toggle()">Открыть меню</button></p>
+      <router-outlet></router-outlet>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+</body>

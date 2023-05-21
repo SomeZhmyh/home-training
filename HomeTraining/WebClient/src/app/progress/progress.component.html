@@ -1,0 +1,37 @@
+<mat-form-field>
+  <mat-select placeholder="Программы" (selectionChange)="selectProgram($event)">
+    <mat-option *ngFor="let program of programs" [value]="program">{{program.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+<table>
+  <tbody>
+    <tr>
+      <td>Вес</td>
+      <td>Подходы</td>
+      <td>Длительность</td>
+      <td><mat-form-field>
+         <input matInput matInput [matDatepicker]="picker1" placeholder="Select date" [formControl]="date">
+         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+         <mat-datepicker #picker1></mat-datepicker>
+         </mat-form-field></td>
+    </tr>
+  </tbody>
+</table>
+<p> {{programName}}</p>
+
+<ul>
+  <li *ngFor="let exercise of userExecises; let i = index" [value]="exercise">
+    <ol>
+
+      {{i}}
+      <li *ngFor="let set of sets[i]; let j = index"> {{j}}  {{set.weight}}  {{set.count}}  {{set.minutesElapsed}}</li>
+
+    </ol>
+    <button mat-button (click)="configureExercise(i)">Редактировать подходы</button>
+  </li>
+</ul>
+
+
+

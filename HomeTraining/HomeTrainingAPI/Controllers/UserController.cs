@@ -25,21 +25,21 @@ namespace WebApplication1.Controllers
             _emailService = emailService;
         }
         [HttpPost("/login")]
-        public GetLoginResponse Login(LoginModel model)
+        public GetLoginResponseModel Login(LoginModel model)
         {
             string querry = $@"
             
-            SELECT ""User"".""Username"" AS ""Login"", '' AS ""Token"", array_agg(""Role"".""Name"") AS ""Roles""
+            SELECT ""User"".""Id"", ""User"".""Username"", '' AS ""Token"", array_agg(""Role"".""Name"") AS ""Roles""
             FROM ""User""
             INNER JOIN ""UserRole"" ON ""User"".""Id"" = ""UserRole"".""UserId""
             INNER JOIN ""Role"" ON ""Role"".""Id"" = ""UserRole"".""RoleId""
             WHERE ""User"".""Username"" = '{model.Username}' AND ""User"".""Password"" = '{model.Password}'
-            GROUP BY ""User"".""Username""            
+            GROUP BY ""User"".""Id"", ""User"".""Username""            
             ";
-            GetLoginResponse res;
+            GetLoginResponseModel res;
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                res = db.Query<GetLoginResponse>(querry).FirstOrDefault();
+                res = db.Query<GetLoginResponseModel>(querry).FirstOrDefault();
             }
 
             var claims = new List<Claim> { new Claim(ClaimTypes.Name, model.Username) };
@@ -64,7 +64,7 @@ namespace WebApplication1.Controllers
         [HttpPost("/register")]
         public void Register(RegisterModel registerModel)
         {
-            int code = _emailService.SendConfirmCode(registerModel.Email); //#TODO сюда вернуть EmailService.SendConfirmCode()
+            int code = _emailService.SendConfirmCode(registerModel.Email); 
             string querry = $@"
             
             INSERT INTO ""User"" (""Username"", ""Password"", ""Email"", ""EmailConfirmed"", ""ConfirmCode"")
@@ -94,10 +94,10 @@ namespace WebApplication1.Controllers
             int id =0;
             string querry = $@"
             UPDATE ""User"" SET ""EmailConfirmed"" = true
-WHERE ""ConfirmCode""={confirmEmailModel.ConfirmCode}
-AND ""Email""='{confirmEmailModel.Email}'
-AND ""Password""='{confirmEmailModel.Password}'
-RETURNING ""Id"";
+            WHERE ""ConfirmCode""={confirmEmailModel.ConfirmCode}
+            AND ""Email""='{confirmEmailModel.Email}'
+            AND ""Password""='{confirmEmailModel.Password}'
+            RETURNING ""Id"";
             ";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))

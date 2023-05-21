@@ -1,0 +1,21 @@
+<ul>
+  <li *ngFor="let item of exercises; let i = index">
+    #{{ i }} 
+    {{ item.description }}
+    {{ item.name }}
+    {{ item.image }}
+    {{ item.categoryIds }}
+    {{ item.categoryNames }}
+  </li>
+</ul>
+
+<input mat-input [(ngModel)]="name">
+
+<button mat-stroked-button color="primary" (click)="add()">Добавить упражнение</button>
+<mat-form-field>
+  <mat-select placeholder="Категории" [formControl]="categoriesFormControl" multiple>
+    <mat-option *ngFor="let category of categories" [value]="category">{{category.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<p>Описание:</p>
+<input mat-input [(ngModel)]="description">

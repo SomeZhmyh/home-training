@@ -1,0 +1,71 @@
+@use '@angular/material' as mat;
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@include mat.core();
+
+$my-theme-primary: mat.define-palette(mat.$indigo-palette, 500, 200, 800);
+$my-theme-accent: mat.define-palette(mat.$cyan-palette);
+$my-theme-warn: mat.define-palette(mat.$deep-orange-palette, A200);
+
+$light-theme: mat.define-light-theme( ( color: ( primary: $my-theme-primary, accent: $my-theme-accent, warn: $my-theme-warn, ), ) );
+
+$dark-theme: mat.define-dark-theme( ( color: ( primary: $my-theme-primary, accent: $my-theme-accent, warn: $my-theme-warn, ), ) );
+
+
+
+.dark-theme {
+  // use our theme with angular-material-theme mixin
+  //  @include angular-material-theme($dark-theme);
+  //  @include mat.core-theme($light-theme);
+  @include mat.all-component-colors($dark-theme);
+  //background: mat.get-color-from-palette(mat.$deep-purple-palette);
+
+  
+}
+
+.light-theme {
+  @include mat.all-component-themes($light-theme);
+  
+}
+
+.light-theme, .dark-theme {
+  mat-sidenav-container {
+    font-size: 20px;
+    padding: 15px;
+  }
+
+  mat-form-field {
+    width: 500px;
+  }
+
+  mat-sidenav {
+    width: 500px;
+  }
+
+  button {
+    font-size: 20px;
+    border: 1px solid;
+    margin: 5px 10px 5px 10px;
+  }
+
+  a {
+    border-bottom: 1px solid;
+    margin: 5px 10px 5px 10px;
+  }
+
+  table {
+    width: 80%;
+    margin: 5px 10px 5px 10px;
+  }
+
+  td {
+    font-size: 20px;
+  }
+
+  th {
+    font-size: 20px;
+    padding-left: 16px;
+    font-weight: bold;
+  }
+}
+
+

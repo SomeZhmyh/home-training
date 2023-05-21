@@ -11,10 +11,10 @@ namespace HomeTrainingAPI.Services
             _email = configuration["EmailSender:Address"];
             _password = configuration["EmailSender:Password"];
         }
-        //#TODO подкинуть IConfiguration в ctor; добавить в IConf почту и пароль приложения 
+
         public int SendConfirmCode(string email)
         {
-            int code = Random.Shared.Next(1000, 9999);
+            int code = Random.Shared.Next(10000, 99999);
             /*#TODO оформить отправку письма
             // отправитель - устанавливаем адрес и отображаемое в письме имя
             MailAddress from = new MailAddress("somemail@gmail.com", "Tom");

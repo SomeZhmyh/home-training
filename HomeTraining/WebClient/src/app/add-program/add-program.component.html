@@ -1,0 +1,27 @@
+<ul>
+  <li *ngFor="let item of programs; let i = index">
+    #{{ i }}
+    {{ item.name }}
+    <button mat-stroked-button color="primary" (click)="showDetails(i)">Подробнее</button>
+  </li>
+</ul>
+
+<input mat-input [(ngModel)]="name">
+
+<button mat-stroked-button color="primary" (click)="addProgram()">Добавить программу</button>
+
+<mat-form-field>
+  <mat-select placeholder="Программы" [formControl]="programsFormControl">
+    <mat-option *ngFor="let program of programs" [value]="program">{{program.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field>
+  <mat-select placeholder="Упражнения" [formControl]="exercisesFormControl" multiple>
+    <mat-option *ngFor="let exercise of exercises" [value]="exercise">{{exercise.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<button mat-stroked-button color="primary" (click)="addExerciseToProgram()">Добавить упражнение в программу</button>
+<button mat-stroked-button color="primary" >Начать тренировку</button>
+

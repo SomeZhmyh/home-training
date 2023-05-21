@@ -1,10 +1,11 @@
 ﻿namespace HomeTrainingAPI.Models
 
 {
-    public class GetLoginResponse
+    public class GetLoginResponseModel
     {
-        public string Login { get; set; }
+        public int Id { get; set; }
+        public string Username { get; set; }
         public string Token { get; set; }
-        public List<string> Roles { get; set; }
+        public string[] Roles { get; set; }
     }
 }

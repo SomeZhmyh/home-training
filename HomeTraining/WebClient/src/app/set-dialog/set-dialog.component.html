@@ -1,0 +1,14 @@
+<p>{{currentExercise.name}}</p>
+
+<ul>
+
+  <li *ngFor="let set of sets; let i = index">{{i}} {{set.weight}}, {{set.count}}, {{set.minutesElapsed}}
+    <button mat-button>Remove</button>
+
+  </li>
+
+</ul>
+<input type="number" mat-input [(ngModel)]="weight" placeholder="Вес">
+<input type="number" mat-input [(ngModel)]="count" placeholder="Вес">
+<input type="number" mat-input [(ngModel)]="minutesElapsed" placeholder="Вес">
+<button mat-button (click)="addSet()">Add set</button>

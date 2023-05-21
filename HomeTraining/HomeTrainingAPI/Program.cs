@@ -5,6 +5,7 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 using HomeTrainingAPI;
 using HomeTrainingAPI.Services;
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 var builder = WebApplication.CreateBuilder();
 builder.Services.AddSwaggerGen(option =>
