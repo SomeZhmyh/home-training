@@ -3,17 +3,17 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DateToJSONString } from '../_helpers/dateFunctions';
 import { UserExercisesModel } from '../_models/userExerciseModel';
-import { StorageService } from './storage.service';
+import { CookieService } from './cookie.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserExerciseService {
 
-  constructor(private http: HttpClient, private storageService: StorageService) { }
+  constructor(private http: HttpClient, private cookieService: CookieService) { }
 
   addSet(model: UserExercisesModel): Observable<any> {
-    model.userId = this.storageService.getUserId();
+    model.userId = this.cookieService.getUserId();
     return this.http.post('https://localhost:7186/add-set', model);
   }
 

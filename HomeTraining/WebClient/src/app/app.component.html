@@ -1,5 +1,5 @@
 
-<body [class]="storageService.OS.S.theme.obs | async">
+<body [class]="cookieService.OS.S.theme.obs | async">
   <mat-sidenav-container class="example-container" >
     <mat-sidenav #sidenav mode="side">
 
@@ -15,16 +15,8 @@
           <a routerLink="/profile">Профиль</a> <br />
           <a routerLink="/about">О нас</a> <br />
           <a routerLink="/add-exercises">Добавить анжуманя</a> <br />
-          <a routerLink="/add-program">Добавить программу</a> <br />
-          <!-- <a routerLink="/groupManager">Менеджер групп</a> <br />
-   <a routerLink="/teacherManager">Менеджер преподавателей</a> <br />
-   <a routerLink="/disciplineManager">Менеджер дисциплин(предметов)</a> <br />
-   <a routerLink="/studentManager">Менеджер студентов</a> <br />
-   <a routerLink="/lessonManager">Менеджер занятий(пар)</a> <br />
-   <a routerLink="/visitorManager">Менеджер посещений</a> <br />
-   <a routerLink="/reportManager">Отчеты</a> <br />
-   <a routerLink="#">В разработке...</a> <br />
-    -->
+          <a routerLink="/programs">Добавить программу</a> <br />
+
         </mat-nav-list>
 
 

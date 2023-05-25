@@ -11,13 +11,15 @@ import { ExerciseService } from '../_services/exercise.service';
   styleUrls: ['./add-exercises.component.css']
 })
 export class AddExercisesComponent implements OnInit {
+
+  constructor(private _exercisesService: ExerciseService, private _categoryService: CategoryService) { }
+
   exercises: ExercisesModel[];
   categories: CategoryModel[];
   categoriesFormControl = new FormControl();
   name: string;
   description: string;
 
-  constructor(private _exercisesService: ExerciseService, private _categoryService: CategoryService) {}
 
   ngOnInit(): void {
     this._exercisesService.getExercises().subscribe(
@@ -45,7 +47,3 @@ export class AddExercisesComponent implements OnInit {
   }
 
 }
-/*
-(<привести к типу биба>боба).размерБибы() - 4
-  < привести к типу биба > боба.размерБобы() - <биба>размерБобы биба != число биба = объект - ошибка
-*/

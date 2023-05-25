@@ -6,14 +6,13 @@ import { ExerciseService } from '../_services/exercise.service';
 import { ProgramService } from '../_services/program.service';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProgramDetailsComponent } from '../program-details/program-details.component';
-import { DialogRef } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-add-program',
   templateUrl: './add-program.component.html',
   styleUrls: ['./add-program.component.css']
 })
-export class AddProgramComponent implements OnInit {
+export class ProgramsComponent implements OnInit {
   exercises: ExercisesModel[];
   programs: ProgramsModel[];
   exercisesFormControl = new FormControl();

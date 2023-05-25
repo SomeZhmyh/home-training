@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { UserService } from '../_services/auth.service';
+import { AuthService } from '../_services/auth.service';
 import { RegisterModel } from '../_models/registerModel'
 import { RoleModel } from '../_models/roleModel';
 @Component({
@@ -19,16 +19,16 @@ export class RegisterComponent implements OnInit {
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
-  constructor(private _userService: UserService) { }
+  constructor(private _authService: AuthService) { }
   ngOnInit(): void {
-    //this._userService.getRoles().subscribe(roles => this.roles.push(...roles));
+    //this._authService.getRoles().subscribe(roles => this.roles.push(...roles));
   }
   importValue(role: RoleModel) {
     this.selected = role;
   }
 
   onSubmit(): void {
-    this._userService.register(this.form).subscribe({
+    this._authService.register(this.form).subscribe({
       next: data => {
         console.log(data);
         this.isSuccessful = true;

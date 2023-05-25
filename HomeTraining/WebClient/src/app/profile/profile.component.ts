@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StorageService } from '../_services/storage.service';
+import { CookieService } from '../_services/cookie.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -7,8 +7,8 @@ import { StorageService } from '../_services/storage.service';
 })
 export class ProfileComponent implements OnInit {
   currentUser: any;
-  constructor(private storageService: StorageService) { }
+  constructor(private cookieService: CookieService) { }
   ngOnInit(): void {
-    this.currentUser = this.storageService.getUser();
+    this.currentUser = this.cookieService.getUser();
   }
 }

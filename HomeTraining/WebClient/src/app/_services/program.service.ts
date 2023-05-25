@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ExercisesModel } from '../_models/exercisesModel';
 import { ProgramsModel } from '../_models/programModel';
-import { StorageService } from './storage.service';
+import { CookieService } from './cookie.service';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -13,17 +13,17 @@ const httpOptions = {
 })
 export class ProgramService {
 
-  constructor(private http: HttpClient, private storageService: StorageService) { }
+  constructor(private http: HttpClient, private cookieService: CookieService) { }
 
   getPrograms(): Observable<any> {
-    return this.http.get<ProgramsModel[]>(`https://localhost:7186/get-program-by-userId/${this.storageService.getUserId()}`);
+    return this.http.get<ProgramsModel[]>(`https://localhost:7186/get-program-by-userId/${this.cookieService.getUserId()}`);
   }
   getProgramExercises(id: number): Observable<any> {
     return this.http.get<ExercisesModel[]>('https://localhost:7186/get-program-exercises/'+id);
   }
 
   addProgram(model: ProgramsModel): Observable<any> {
-    model.userId = this.storageService.getUserId();
+    model.userId = this.cookieService.getUserId();
     return this.http.post('https://localhost:7186/add-program', model)
   }
 

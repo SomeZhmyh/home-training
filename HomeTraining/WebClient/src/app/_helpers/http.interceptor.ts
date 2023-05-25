@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { StorageService } from '../_services/storage.service';
+import { CookieService } from '../_services/cookie.service';
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
   token: string = "";
-  constructor(private _storageService: StorageService) {
-    this.token = _storageService.getUserToken();
+  constructor(private _cookieService: CookieService) {
+    this.token = _cookieService.getUserToken();
   }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     req = req.clone({

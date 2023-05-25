@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../_services/auth.service';
-import { StorageService } from '../_services/storage.service';
-import { LoginModel } from '../_models/loginModel'
-import { AuthReponseModel } from '../_models/AuthResponseModel'
+import { AuthService } from '../_services/auth.service';
+import { CookieService } from '../_services/cookie.service';
+import { LoginModel } from '../_models/loginModel';
+import { AuthReponseModel } from '../_models/authResponseModel'
 
 @Component({
   selector: 'app-login',
@@ -27,23 +27,23 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
-  constructor(private _authService: UserService, private _storageService: StorageService) { }
+  constructor(private _authService: AuthService, private _cookieService: CookieService) { }
 
   ngOnInit(): void {
-    if (this._storageService.isLoggedIn()) {
+    if (this._cookieService.isLoggedIn()) {
       this.isLoggedIn = true;
-      this.roles = this._storageService.getUser().roles;
-      this.data = this._storageService.getUser();
+      this.roles = this._cookieService.getUser().roles;
+      this.data = this._cookieService.getUser();
     }
   }
   onSubmit(): void {
     this._authService.login(this.form).subscribe(
       data => {
         this.data = data;
-        this._storageService.saveUser(data);
+        this._cookieService.saveUser(data);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.roles = this._storageService.getUser().roles;
+        this.roles = this._cookieService.getUser().roles;
         window.location.reload();;
         console.log("logged as " + data.name);
         console.log(data);

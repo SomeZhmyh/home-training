@@ -11,7 +11,7 @@ interface ISTART extends KeyObsValueReset {
 @Injectable({
   providedIn: 'root'
 })
-export class StorageService {
+export class CookieService {
   constructor() { }
 
   START: OStoreStart = {

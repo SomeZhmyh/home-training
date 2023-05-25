@@ -14,7 +14,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddExercisesComponent } from './add-exercises/add-exercises.component';
-import { AddProgramComponent } from './add-program/add-program.component';
+import { ProgramsComponent } from './programs/programs.component';
 import { ProgramDetailsComponent } from './program-details/program-details.component';
 import { SetDialogComponent } from './set-dialog/set-dialog.component';
 import { ProgressComponent } from './progress/progress.component';
@@ -26,7 +26,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'add-exercises', component: AddExercisesComponent },
-  { path: 'add-program', component: AddProgramComponent },
+  { path: 'programs', component: ProgramsComponent },
   { path: '**', component: NotFoundComponent },
 ]
 
@@ -40,7 +40,7 @@ const appRoutes: Routes = [
     LoginComponent,
     ProfileComponent,
     AddExercisesComponent,
-    AddProgramComponent,
+    ProgramsComponent,
     ProgramDetailsComponent,
     SetDialogComponent,
     ProgressComponent,

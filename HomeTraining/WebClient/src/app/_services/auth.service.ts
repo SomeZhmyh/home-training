@@ -13,29 +13,27 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(login: LoginModel): Observable<any> {
 
     return this.http.post(
-      'https://localhost:7186/login',
-      login,
-      httpOptions
+      'https://localhost:7186/login', login
     );
   }
   register(register: RegisterModel): Observable<any> {
     return this.http.post(
-      'https://localhost:7186/register',
-      register,
-      httpOptions
+      'https://localhost:7186/register', register
     );
   }
-  getRoles(): Observable<any> {
-    return this.http.get<RoleModel[]>(AUTH_API + '/roles');
-  }
+
   logout(): Observable<any> {
     sessionStorage.removeItem("auth-user");
-    return this.http.post(AUTH_API + '/signout', {}, httpOptions);
+    return this.http.post(AUTH_API + '/signout', {} );
+  }
+
+  getRoles(): Observable<any> {
+    return this.http.get<RoleModel[]>(AUTH_API + '/roles');
   }
 }

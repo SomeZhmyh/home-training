@@ -1,6 +1,6 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Component, OnInit } from '@angular/core';
-import { StorageService } from './_services/storage.service';
+import { CookieService } from './_services/cookie.service';
 import { DateAdapter } from '@angular/material/core';
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ export class AppComponent implements OnInit{
   themes: string[] = ['light', 'dark'];
   selectedTheme: string = 'light';
   themeMap: Map<string, string> = new Map();
-  constructor(private overlayContainer: OverlayContainer, public storageService: StorageService, private dateAdapter: DateAdapter<Date>) {
+  constructor(private overlayContainer: OverlayContainer, public cookieService: CookieService, private dateAdapter: DateAdapter<Date>) {
     this.themeMap.set('light', 'light-theme');
     this.themeMap.set('dark', 'dark-theme');
 
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.selectedTheme = this.storageService.getTheme();
+    this.selectedTheme = this.cookieService.getTheme();
     this.removeThemeClasses();
     this.addThemeClass();
   }
@@ -34,7 +34,7 @@ export class AppComponent implements OnInit{
   }
 
   addThemeClass() {
-    const themeClass: string = this.storageService.OS.snapshot(this.storageService.OS.S.theme)
+    const themeClass: string = this.cookieService.OS.snapshot(this.cookieService.OS.S.theme)
     this.overlayContainer.getContainerElement().classList.add(themeClass)
   }
   changeTheme() {
@@ -42,10 +42,10 @@ export class AppComponent implements OnInit{
       this.selectedTheme = 'dark'
     else
       this.selectedTheme = 'light';
-    this.storageService.saveTheme(this.selectedTheme);
+    this.cookieService.saveTheme(this.selectedTheme);
 
     const theme: string | undefined = this.themeMap.get(this.selectedTheme);
-    this.storageService.OS.put(this.storageService.OS.S.theme, theme);
+    this.cookieService.OS.put(this.cookieService.OS.S.theme, theme);
     this.removeThemeClasses();
     this.addThemeClass();
   }
