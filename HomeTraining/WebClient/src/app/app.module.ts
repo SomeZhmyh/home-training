@@ -6,7 +6,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialAppModule } from './ngmaterial.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpRequestInterceptor } from './_helpers/http.interceptor';
@@ -18,14 +17,16 @@ import { ProgramsComponent } from './programs/programs.component';
 import { ProgramDetailsComponent } from './program-details/program-details.component';
 import { SetDialogComponent } from './set-dialog/set-dialog.component';
 import { ProgressComponent } from './progress/progress.component';
+import { ExerciseComponent } from './exercise/exercise.component';
+import { ExerciseDetailsComponent } from './exercise-details/exercise-details.component';
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
   { path: 'progress', component: ProgressComponent },
   { path: 'about', component: AboutComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'add-exercises', component: AddExercisesComponent },
+  { path: 'exercises', component: ExerciseComponent },
   { path: 'programs', component: ProgramsComponent },
   { path: '**', component: NotFoundComponent },
 ]
@@ -33,7 +34,6 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     AboutComponent,
     NotFoundComponent,
     RegisterComponent,
@@ -44,6 +44,8 @@ const appRoutes: Routes = [
     ProgramDetailsComponent,
     SetDialogComponent,
     ProgressComponent,
+    ExerciseComponent,
+    ExerciseDetailsComponent,
   ],
   imports: [
     BrowserModule,

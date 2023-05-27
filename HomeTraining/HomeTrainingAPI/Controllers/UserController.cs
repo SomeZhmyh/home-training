@@ -89,7 +89,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost("/confirmEmail")]
-        public bool ConfirmEmail(ConfirmEmailModel confirmEmailModel)
+        public bool ConfirmEmail(RegisterModel confirmEmailModel)
         {
             int id =0;
             string querry = $@"

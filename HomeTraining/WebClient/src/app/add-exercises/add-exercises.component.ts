@@ -36,14 +36,38 @@ export class AddExercisesComponent implements OnInit {
     let ids: number[] = [];
     (<CategoryModel[]>this.categoriesFormControl.value).forEach(x => ids.push(x.id));
     let model: ExercisesModel = {
-        id: 0,
-        name: this.name,
-        description: this.description,
-      image: '',
+      id: 0,
+      name: this.name,
+      description: this.description,
+      image: this.ImageBaseData!.toString(),
       categoryIds: ids,
-        categoryNames: []
+      categoryNames: []
     };
     this._exercisesService.addExercises(model).subscribe();
   }
 
+  ImageBaseData: string | ArrayBuffer | null;
+
+  handleFileInput(files: any) {
+    let me = this;
+    let file: File = files.target.files[0];
+    if (file.size > 50000) {
+      this.ImageBaseData = null;
+      alert('Вiн занадто великий, братику');
+      return;
+    }
+    //if (file.type)
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      console.log(reader.result);
+      me.ImageBaseData = reader.result;
+    };
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
+  }
 }
+
+
+

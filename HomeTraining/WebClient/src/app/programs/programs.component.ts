@@ -8,9 +8,9 @@ import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angu
 import { ProgramDetailsComponent } from '../program-details/program-details.component';
 
 @Component({
-  selector: 'app-add-program',
-  templateUrl: './add-program.component.html',
-  styleUrls: ['./add-program.component.css']
+  selector: 'app-programs',
+  templateUrl: './programs.component.html',
+  styleUrls: ['./programs.component.css']
 })
 export class ProgramsComponent implements OnInit {
   exercises: ExercisesModel[];

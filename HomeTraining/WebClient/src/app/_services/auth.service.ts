@@ -36,4 +36,8 @@ export class AuthService {
   getRoles(): Observable<any> {
     return this.http.get<RoleModel[]>(AUTH_API + '/roles');
   }
+
+  confirm(model: RegisterModel): Observable<any> {
+    return this.http.post<boolean>('https://localhost:7186/confirmEmail', model);
+  }
 }

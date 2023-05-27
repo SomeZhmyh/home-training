@@ -1,0 +1,17 @@
+<mat-form-field>
+  <mat-select placeholder="Категории" [formControl]="categoriesFormControl" (selectionChange)="sort()">
+    <mat-option *ngFor="let category of categories" [value]="category">{{category.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<button (click)="addExercise()">Добавить упражнение</button>
+
+<ul>
+  <li *ngFor="let item of shownExercises; let i = index">
+    #{{ i }}
+    {{ item.name }}
+
+    <img [src]="item.image">
+    <button mat-button (click)="showDetails(item)">Пиписание</button>
+  </li>
+</ul>

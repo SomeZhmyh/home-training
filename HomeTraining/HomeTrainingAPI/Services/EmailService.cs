@@ -1,4 +1,5 @@
-﻿using System.Net.Mail;
+﻿using System.Net;
+using System.Net.Mail;
 
 namespace HomeTrainingAPI.Services
 {
@@ -15,26 +16,27 @@ namespace HomeTrainingAPI.Services
         public int SendConfirmCode(string email)
         {
             int code = Random.Shared.Next(10000, 99999);
-            /*#TODO оформить отправку письма
+            //#TODO оформить отправку письма
             // отправитель - устанавливаем адрес и отображаемое в письме имя
-            MailAddress from = new MailAddress("somemail@gmail.com", "Tom");
+            MailAddress from = new MailAddress(_email, "Yor fren");
             // кому отправляем
-            MailAddress to = new MailAddress("somemail@yandex.ru");
+            MailAddress to = new MailAddress(email);
             // создаем объект сообщения
             MailMessage m = new MailMessage(from, to);
             // тема письма
-            m.Subject = "Тест";
+            m.Subject = "Код подтверждения";
             // текст письма
-            m.Body = "<h2>Письмо-тест работы smtp-клиента</h2>";
+            m.Body = @$"<h2>Ваш код подтверждения для регистрации в системе Домашний Тренер:</h2>
+                <h1>{code}</h1>";
             // письмо представляет код html
             m.IsBodyHtml = true;
             // адрес smtp-сервера и порт, с которого будем отправлять письмо
-            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            SmtpClient smtp = new SmtpClient("smtp.mail.ru", 465);
             // логин и пароль используя IConfiguration
-            smtp.Credentials = new NetworkCredential("somemail@gmail.com", "mypassword");
+            smtp.Credentials = new NetworkCredential(_email, _password);
             smtp.EnableSsl = true;
-            smtp.Send(m);
-            */
+            smtp.SendMailAsync(m);
+            
             return code;
         }
     }

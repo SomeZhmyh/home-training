@@ -15,16 +15,13 @@ export class RegisterComponent implements OnInit {
     email: "",
     username: "",
     password: "",
+    confirmCode: 0
   };
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
   constructor(private _authService: AuthService) { }
   ngOnInit(): void {
-    //this._authService.getRoles().subscribe(roles => this.roles.push(...roles));
-  }
-  importValue(role: RoleModel) {
-    this.selected = role;
   }
 
   onSubmit(): void {
@@ -39,5 +36,14 @@ export class RegisterComponent implements OnInit {
         this.isSignUpFailed = true;
       }
     });
+  }
+  confirm() {
+    this._authService.confirm(this.form).subscribe(res => {
+      alert('pat pat');
+    },
+      error => {
+        alert('not pat pat');
+      }
+    )
   }
 }

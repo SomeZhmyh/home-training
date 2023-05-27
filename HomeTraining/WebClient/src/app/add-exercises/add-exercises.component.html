@@ -1,13 +1,3 @@
-<ul>
-  <li *ngFor="let item of exercises; let i = index">
-    #{{ i }} 
-    {{ item.description }}
-    {{ item.name }}
-    {{ item.image }}
-    {{ item.categoryIds }}
-    {{ item.categoryNames }}
-  </li>
-</ul>
 
 <input mat-input [(ngModel)]="name">
 
@@ -19,3 +9,8 @@
 </mat-form-field>
 <p>Описание:</p>
 <input mat-input [(ngModel)]="description">
+<p>Картинка:</p>
+
+<input type="file" id="FUImage" name="FUImage" accept=".png, .jpg, .jpeg" (change)="handleFileInput($event)">
+
+
