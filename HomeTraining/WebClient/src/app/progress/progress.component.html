@@ -12,7 +12,7 @@
       <td>Подходы</td>
       <td>Длительность</td>
       <td><mat-form-field>
-         <input matInput matInput [matDatepicker]="picker1" placeholder="Select date" [formControl]="date">
+         <input matInput [matDatepicker]="picker1" placeholder="Select date" [formControl]="date" (ngModelChange)="dateChanged()">
          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
          <mat-datepicker #picker1></mat-datepicker>
          </mat-form-field></td>
@@ -25,7 +25,7 @@
   <li *ngFor="let exercise of userExecises; let i = index" [value]="exercise">
     <ol>
 
-      {{i}}
+      {{i}} {{exercise.name}}
       <li *ngFor="let set of sets[i]; let j = index"> {{j}}  {{set.weight}}  {{set.count}}  {{set.minutesElapsed}}</li>
 
     </ol>

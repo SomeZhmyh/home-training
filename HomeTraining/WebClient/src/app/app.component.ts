@@ -1,7 +1,9 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CookieService } from './_services/cookie.service';
 import { DateAdapter } from '@angular/material/core';
+import { CdTimerComponent } from 'angular-cd-timer';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,6 +14,9 @@ export class AppComponent implements OnInit{
   themes: string[] = ['light', 'dark'];
   selectedTheme: string = 'light';
   themeMap: Map<string, string> = new Map();
+
+  @ViewChild('basicTimer') timer: CdTimerComponent;
+
   constructor(private overlayContainer: OverlayContainer, public cookieService: CookieService, private dateAdapter: DateAdapter<Date>) {
     this.themeMap.set('light', 'light-theme');
     this.themeMap.set('dark', 'dark-theme');
@@ -22,7 +27,6 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     this.selectedTheme = this.cookieService.getTheme();
     this.removeThemeClasses();
-    this.addThemeClass();
   }
 
   removeThemeClasses(classPostfix: string = '-theme') {
@@ -33,20 +37,26 @@ export class AppComponent implements OnInit{
     }
   }
 
-  addThemeClass() {
-    const themeClass: string = this.cookieService.OS.snapshot(this.cookieService.OS.S.theme)
-    this.overlayContainer.getContainerElement().classList.add(themeClass)
-  }
-  changeTheme() {
-    if (this.selectedTheme == 'light')
-      this.selectedTheme = 'dark'
-    else
-      this.selectedTheme = 'light';
-    this.cookieService.saveTheme(this.selectedTheme);
 
-    const theme: string | undefined = this.themeMap.get(this.selectedTheme);
-    this.cookieService.OS.put(this.cookieService.OS.S.theme, theme);
-    this.removeThemeClasses();
-    this.addThemeClass();
+  timerGetValue() {
+
+    let a = this.timer.get();
+    let i = a.minutes + a.seconds / 60;
+    alert(i.toFixed(2));
+  }
+
+  alala(event: any) {
+    switch (event.value) {
+      case 'start':
+        this.timer.start();
+        break;
+      case 'stop':
+        this.timer.stop();
+        break;
+      case 'resume':
+        this.timer.resume();
+        break;
+     
+    }
   }
 }

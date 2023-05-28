@@ -24,6 +24,7 @@
     "@mat-color/sass": "^1.0.2",
     "@syncfusion/ej2-angular-dropdowns": "^20.2.43",
     "@types/nanoid": "^3.0.0",
+    "angular-cd-timer": "^3.0.0",
     "bootstrap": "^5.2.3",
     "guid-typescript": "^1.0.9",
     "jest-editor-support": "*",

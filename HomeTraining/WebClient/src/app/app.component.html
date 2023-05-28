@@ -6,7 +6,6 @@
       <div layout="vertical" layout-fill>
 
         <p><button mat-button (click)="sidenav.toggle()">Закрыть меню</button></p>
-        <button mat-button (click)="changeTheme()" >Изменить тему</button>
 
         <mat-nav-list>
           <a routerLink="/progress">Базинга</a> <br />
@@ -18,9 +17,23 @@
           <a routerLink="/exercises"> анжуманя</a> <br />
           <a routerLink="/programs">Добавить программу</a> <br />
 
+
         </mat-nav-list>
 
+        <cd-timer #basicTimer [autoStart]="false"></cd-timer>
+        <button mat-button (click)="timerGetValue()">get nigga</button>
 
+        <mat-button-toggle-group #group="matButtonToggleGroup" (change)="alala($event)">
+          <mat-button-toggle value="start" aria-label="">
+            <mat-icon>format_align_left</mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle value="stop" aria-label="">
+            <mat-icon>format_align_center</mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle value="resume" aria-label="">
+            <mat-icon>format_align_right</mat-icon>
+          </mat-button-toggle>
+        </mat-button-toggle-group>
       </div>
 
     </mat-sidenav>

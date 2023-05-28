@@ -19,6 +19,8 @@ import { SetDialogComponent } from './set-dialog/set-dialog.component';
 import { ProgressComponent } from './progress/progress.component';
 import { ExerciseComponent } from './exercise/exercise.component';
 import { ExerciseDetailsComponent } from './exercise-details/exercise-details.component';
+import { CdTimerModule } from 'angular-cd-timer';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 const appRoutes: Routes = [
   { path: 'progress', component: ProgressComponent },
   { path: 'about', component: AboutComponent },
@@ -52,7 +54,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     FormsModule, ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),HttpClientModule, 
-    MaterialAppModule
+    MaterialAppModule,
+    CdTimerModule, MatButtonToggleModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }

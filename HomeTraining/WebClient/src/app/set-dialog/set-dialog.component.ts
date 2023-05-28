@@ -14,7 +14,7 @@ export class SetDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<SetDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private _userExerciseService: UserExerciseService) {
   }
-  currentDate: Date;
+  currentDate: Date = new Date();
   currentExercise: ExercisesModel;
   sets: UserExercisesModel[] = [];
 
@@ -29,21 +29,27 @@ export class SetDialogComponent implements OnInit {
   refresh() {
     this._userExerciseService.getSet(this.currentExercise.id, this.currentDate).subscribe(x => {
       this.sets = x;
-}
+    }
     );
   }
 
   addSet() {
+    let date: Date = this.currentDate;
+    date.setDate(date.getDate() + 1);
     let set: UserExercisesModel = {
-        id: 0,
-        userId: 0,
-        exerciseId: this.currentExercise.id,
-        date: this.currentDate,
-        weight: this.weight,
-        count: this.count,
-        minutesElapsed: this.minutesElapsed
+      id: 0,
+      userId: 0,
+      exerciseId: this.currentExercise.id,
+      date: date,
+      weight: this.weight,
+      count: this.count,
+      minutesElapsed: this.minutesElapsed
     }
-    this._userExerciseService.addSet(set).subscribe(() => this.refresh());
+    this._userExerciseService.addSet(set).subscribe(() => {
+      this.refresh();
+      date.setDate(date.getDate() - 1);
+    });
   }
-
 }
+
+
