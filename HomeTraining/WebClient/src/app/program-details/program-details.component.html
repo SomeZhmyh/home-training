@@ -1,7 +1,16 @@
-<ul>
+<div style="background-color: #464658; padding: 25px; border: 1px solid black; color: #e3e3e8; ">
+
+
   <li *ngFor="let item of exercises; let i = index">
-    #{{ i }}
+    {{ i }}.
     {{ item.name }}
-    {{ item.description }}
   </li>
-</ul>
+  <mat-form-field >
+    <mat-select placeholder="Упражнения" [formControl]="exercisesFormControl" multiple>
+      <mat-option style="background-color:white" *ngFor="let exercise of allExercises" [value]="exercise">{{exercise.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-stroked-button color="primary" (click)="addExerciseToProgram()">Добавить упражнение в программу</button>
+
+</div>

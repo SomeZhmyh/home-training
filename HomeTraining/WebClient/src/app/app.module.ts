@@ -23,6 +23,7 @@ import { CdTimerModule } from 'angular-cd-timer';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 const appRoutes: Routes = [
   { path: 'progress', component: ProgressComponent },
+  { path: '', component: LoginComponent },
   { path: 'about', component: AboutComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

@@ -71,8 +71,8 @@ export class ProgressComponent implements OnInit {
   }
   configureExercise(index: number): void {
     let dialogRef = this.dialog.open(SetDialogComponent, {
-      height: '400px',
-      width: '600px',
+      height: '600px',
+      width: '800px',
       data: { exercise: this.userExecises[index], date: (<Date>this.date.value)}
     });
   }

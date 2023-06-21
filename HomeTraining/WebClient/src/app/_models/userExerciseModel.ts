@@ -4,7 +4,7 @@ export interface UserExercisesModel {
   id: number,
   userId: number,
   exerciseId: number,
-  date: Date,
+  date: string,
   weight: number,
   count: number,
   minutesElapsed: number

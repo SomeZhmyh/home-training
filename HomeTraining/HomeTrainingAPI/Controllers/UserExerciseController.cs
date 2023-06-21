@@ -41,8 +41,8 @@ namespace HomeTrainingAPI.Controllers
         public void AddSet(UserExercisesModel model)
         {
             string query = $@"INSERT INTO public.""UserExercise""(
-             ""Id"", ""UserId"", ""ExerciseId"", ""Date"", ""Weight"", ""Count"", ""MinutesElapsed"")
-             VALUES(default, {model.UserId}, {model.ExerciseId}, '{model.Date}', {model.Weight}, {model.Count}, {model.MinutesElapsed} )";
+             ""UserId"", ""ExerciseId"", ""Date"", ""Weight"", ""Count"", ""MinutesElapsed"")
+             VALUES({model.UserId}, {model.ExerciseId}, '{model.Date}', {model.Weight}, {model.Count}, {model.MinutesElapsed} )";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {

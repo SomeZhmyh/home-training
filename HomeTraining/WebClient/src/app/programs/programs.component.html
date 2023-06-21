@@ -1,27 +1,26 @@
-<ul>
-  <li *ngFor="let item of programs; let i = index">
-    #{{ i }}
-    {{ item.name }}
-    <button mat-stroked-button color="primary" (click)="showDetails(i)">Подробнее</button>
-  </li>
-</ul>
+<div class="container">
 
-<input mat-input [(ngModel)]="name">
+  <input mat-input [(ngModel)]="name">
 
-<button mat-stroked-button color="primary" (click)="addProgram()">Добавить программу</button>
 
-<mat-form-field>
-  <mat-select placeholder="Программы" [formControl]="programsFormControl">
-    <mat-option *ngFor="let program of programs" [value]="program">{{program.name}}</mat-option>
-  </mat-select>
-</mat-form-field>
 
-<mat-form-field>
-  <mat-select placeholder="Упражнения" [formControl]="exercisesFormControl" multiple>
-    <mat-option *ngFor="let exercise of exercises" [value]="exercise">{{exercise.name}}</mat-option>
-  </mat-select>
-</mat-form-field>
+  <mat-form-field style="margin-left:30px; margin-right:30px">
+    <mat-select placeholder="Упражнения" [formControl]="exercisesFormControl" multiple>
+      <mat-option style="background-color: #d5d5dd" *ngFor="let exercise of exercises" [value]="exercise">{{exercise.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<button mat-stroked-button color="primary" (click)="addExerciseToProgram()">Добавить упражнение в программу</button>
-<button mat-stroked-button color="primary" >Начать тренировку</button>
+  <button mat-flat-button color="custom" (click)="addProgram()">Добавить программу</button>
 
+
+  <ul>
+    <li *ngFor="let item of programs; let i = index">
+      {{ i }}.
+      {{ item.name }}
+      <button mat-stroked-button style="margin-left: 30px; margin-bottom:15px" (click)="showDetails(i)">Подробнее</button>
+
+    </li>
+  </ul>
+
+
+</div>

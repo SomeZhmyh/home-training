@@ -12,7 +12,7 @@ export class ExerciseDetailsComponent implements OnInit {
 
   exercise: ExercisesModel;
   constructor(public dialogRef: MatDialogRef<ExerciseDetailsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ExercisesModel, private _exerciseService: ExerciseService) { }
+    @Inject(MAT_DIALOG_DATA) public data: ExercisesModel) { }
 
 
   ngOnInit(): void {

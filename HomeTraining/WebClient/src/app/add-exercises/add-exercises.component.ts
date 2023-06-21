@@ -35,6 +35,10 @@ export class AddExercisesComponent implements OnInit {
   add(): void {
     let ids: number[] = [];
     (<CategoryModel[]>this.categoriesFormControl.value).forEach(x => ids.push(x.id));
+    if (this.ImageBaseData == undefined || this.ImageBaseData == null) {
+      alert('Добавьте картинку');
+      return;
+    }
     let model: ExercisesModel = {
       id: 0,
       name: this.name,

@@ -1,5 +1,13 @@
-<p>exercise-details works!</p>
-{{exercise.name}}
-{{exercise.description}}
+<div style="background-color: #464658; padding: 35px; border: 1px solid black; color: #e3e3e8; ">
 
-<img [src]="exercise.image">
+  <p>Детали упражнения:</p>
+  <h2 style="margin-bottom:20px">{{exercise.name}}</h2>
+
+
+  <div class="text-center">
+    <img style="margin-bottom:40px; max-height:300px" [src]="exercise.image" class="" alt="Нет изображения">
+  </div>
+
+  {{exercise.description}}
+
+</div>

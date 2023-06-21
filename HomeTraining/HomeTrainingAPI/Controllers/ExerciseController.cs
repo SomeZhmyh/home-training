@@ -22,8 +22,8 @@ namespace HomeTrainingAPI.Controllers
         {
             string query = $@"INSERT INTO public.""Exercise""(
 
-    ""Id"", ""Name"", ""Description"", ""Image"", ""UserId"")
-	VALUES(default, '{model.Name}', '{model.Description}', '{model.Image}', {userId})
+    ""Name"", ""Description"", ""Image"", ""UserId"")
+	VALUES('{model.Name}', '{model.Description}', '{model.Image}', {userId})
     RETURNING ""Id""";
             int exerciseId;
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
@@ -53,8 +53,9 @@ namespace HomeTrainingAPI.Controllers
         public ActionResult<List<ExercisesModel>> GetExercises(int userId)
         {
             string query = $@"SELECT ""Exercise"".""Id"", ""Exercise"".""Name"", ""Exercise"".""Image"",""Exercise"".""Description"",
-array_agg(""Category"".""Id"") AS ""CategoryIds"", array_agg(""Category"".""Name"") AS ""CategoryNames""
-            FROM ""Exercise""
+
+array_agg(""Category"".""Id"") filter (WHERE ""Category"".""Id"" IS NOT NULL) AS ""CategoryIds"", 
+array_agg(""Category"".""Name"") filter (WHERE ""Category"".""Name"" IS NOT NULL) AS ""CategoryNames""FROM ""Exercise""
             LEFT JOIN ""ExerciseCategory"" ON ""Exercise"".""Id"" = ""ExerciseCategory"".""ExerciseId""
             LEFT JOIN ""Category"" ON ""Category"".""Id"" = ""ExerciseCategory"".""CategoryId""
             WHERE ""Exercise"".""UserId"" = {userId} OR ""Exercise"".""UserId"" = 0

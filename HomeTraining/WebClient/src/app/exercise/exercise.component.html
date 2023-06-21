@@ -1,17 +1,36 @@
-<mat-form-field>
-  <mat-select placeholder="Категории" [formControl]="categoriesFormControl" (selectionChange)="sort()">
-    <mat-option *ngFor="let category of categories" [value]="category">{{category.name}}</mat-option>
-  </mat-select>
-</mat-form-field>
+<div class="container">
 
-<button (click)="addExercise()">Добавить упражнение</button>
+  <mat-form-field style="margin-left:30px; margin-right:40%">
+    <mat-select placeholder="Категории" [formControl]="categoriesFormControl" (selectionChange)="sort()">
+      <mat-option style="background-color: #d5d5dd" *ngFor="let category of categories" [value]="category">{{category.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<ul>
-  <li *ngFor="let item of shownExercises; let i = index">
-    #{{ i }}
-    {{ item.name }}
 
-    <img [src]="item.image">
-    <button mat-button (click)="showDetails(item)">Пиписание</button>
-  </li>
-</ul>
+  <button mat-flat-button color="custom" (click)="addExercise()">Добавить упражнение</button>
+
+  <ul>
+    <li *ngFor="let item of shownExercises; let i = index">
+
+      <div class="card" style="max-width: 80%; margin-bottom: 20px; background-color: #41414e; ">
+        <div class="row g-0">
+          <div class="col-sm-2">
+            <img [src]="item.image" class="card-img-top h-100" alt="Нет изображения">
+          </div>
+          <div class="col-sm-7">
+            <div class="card-body">
+              <h3 class="card-title">{{ item.name }}</h3>
+              <p class="card-text">{{ item.description }}</p>
+              <button style="" mat-flat-button color="custom" (click)="showDetails(item)">Подробнее</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+
+  </ul>
+
+
+
+
+</div>

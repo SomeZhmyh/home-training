@@ -1,14 +1,30 @@
-<p>{{currentExercise.name}}</p>
+<div style="background-color: #464658; padding: 25px; border: 1px solid black; color: #e3e3e8; ">
+  <h2 style="align:center">{{currentExercise.name}}</h2>
 
-<ul>
+  <table style="margin-left:20px">
+    <tr>
+      <td style="padding-right:10px"></td>
+      <td style="padding-right:10px">Вес</td>
+      <td style="padding-right:10px">Повторения</td>
+      <td>Длительность</td>
+    </tr>
 
-  <li *ngFor="let set of sets; let i = index">{{i}} {{set.weight}}, {{set.count}}, {{set.minutesElapsed}}
-    <button mat-button>Remove</button>
+    <tr *ngFor="let set of sets; let i = index">
+      <td align="left"> {{i}}.  </td>
+      <td align="center"> {{set.weight}}</td>
+      <td align="center"> {{set.count}}</td>
+      <td align="center"> {{set.minutesElapsed}}</td>
+      <td> <button mat-flat-button color="custom" style="margin-left:20px"> Удалить </button></td>
+    </tr>
+  </table>
+  <br />
+  <br />
 
-  </li>
 
-</ul>
-<input type="number" mat-input [(ngModel)]="weight" placeholder="Вес">
-<input type="number" mat-input [(ngModel)]="count" placeholder="Вес">
-<input type="number" mat-input [(ngModel)]="minutesElapsed" placeholder="Вес">
-<button mat-button (click)="addSet()">Add set</button>
+  <input style="margin-right:5px" type="number" mat-input [(ngModel)]="weight" placeholder="Вес">
+  <input style="margin-right:5px" type="number" mat-input [(ngModel)]="count" placeholder="Повторения">
+  <input style="margin-right:13px" type="number" mat-input [(ngModel)]="minutesElapsed" placeholder="Длительность">
+  <button mat-flat-button color="custom" (click)="addSet()">Добавить подход</button>
+
+
+</div>

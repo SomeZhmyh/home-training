@@ -8,7 +8,10 @@ $my-theme-warn: mat.define-palette(mat.$deep-orange-palette, A200);
 
 $light-theme: mat.define-light-theme( ( color: ( primary: $my-theme-primary, accent: $my-theme-accent, warn: $my-theme-warn, ), ) );
 
-
+:root{
+    --bs-body-font-family: "Helvetica Neue", Arial;
+}
+$navbar-dark-active-color: $white;
 
 
 .light-theme {
@@ -16,45 +19,47 @@ $light-theme: mat.define-light-theme( ( color: ( primary: $my-theme-primary, acc
   
 }
 
-.light-theme{
-  mat-sidenav-container {
-    font-size: 20px;
-    padding: 15px;
-  }
-
-  mat-form-field {
-    width: 500px;
-  }
-
-  mat-sidenav {
-    width: 500px;
-  }
-
-  button {
-    font-size: 20px;
-    border: 1px solid;
-    margin: 5px 10px 5px 10px;
-  }
-
-  a {
-    border-bottom: 1px solid;
-    margin: 5px 10px 5px 10px;
-  }
-
-  table {
-    width: 80%;
-    margin: 5px 10px 5px 10px;
-  }
-
-  td {
-    font-size: 20px;
-  }
-
-  th {
-    font-size: 20px;
-    padding-left: 16px;
-    font-weight: bold;
-  }
+.light-theme {
+  background-color: #464658;
+  min-height: 100vh;
+  color: #e3e3e8;
 }
+
+mat-form-field {
+  width: 300px;
+}
+
+mat-select-content {
+  background-color:white !important;
+}
+
+mat-form-field span.mat-form-field-label-wrapper label {
+  color: #e3e3e8 !important;
+}
+
+mat-form-field.mat-focused span.mat-form-field-label-wrapper label {
+  color: #e3e3e8 !important;
+}
+
+
+.mat-calendar {
+  background-color: #d5d5dd;
+}
+
+.mat-flat-button.mat-custom {
+  background-color: #47476b;
+  color: #fff;
+}
+
+
+button {
+  font-size: 20px;
+  border: 1px solid;
+  margin: auto;
+}
+
+
+
+
 
 

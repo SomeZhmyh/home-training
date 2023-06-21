@@ -1,37 +1,50 @@
-<mat-form-field>
-  <mat-select placeholder="Программы" (selectionChange)="selectProgram($event)">
-    <mat-option *ngFor="let program of programs" [value]="program">{{program.name}}</mat-option>
-  </mat-select>
-</mat-form-field>
+<div class="container">
+  <div>
+    <mat-form-field>
+      <mat-select placeholder="Программы" (selectionChange)="selectProgram($event)">
+        <mat-option style="background-color: #d5d5dd " *ngFor="let program of programs" [value]="program">{{program.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field style="margin-left:500px">
+      <input  matInput [matDatepicker]="picker1" placeholder="Select date" [formControl]="date" (ngModelChange)="dateChanged() ">
+      <mat-datepicker-toggle  matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker  #picker1></mat-datepicker>
+    </mat-form-field>
+  </div>
 
 
-<table>
-  <tbody>
-    <tr>
-      <td>Вес</td>
-      <td>Подходы</td>
-      <td>Длительность</td>
-      <td><mat-form-field>
-         <input matInput [matDatepicker]="picker1" placeholder="Select date" [formControl]="date" (ngModelChange)="dateChanged()">
-         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-         <mat-datepicker #picker1></mat-datepicker>
-         </mat-form-field></td>
-    </tr>
-  </tbody>
-</table>
-<p> {{programName}}</p>
+<div>
 
-<ul>
-  <li *ngFor="let exercise of userExecises; let i = index" [value]="exercise">
-    <ol>
+        <p> {{programName}}</p>
 
-      {{i}} {{exercise.name}}
-      <li *ngFor="let set of sets[i]; let j = index"> {{j}}  {{set.weight}}  {{set.count}}  {{set.minutesElapsed}}</li>
-
-    </ol>
-    <button mat-button (click)="configureExercise(i)">Редактировать подходы</button>
-  </li>
-</ul>
+        <ul>
+          <li *ngFor="let exercise of userExecises; let i = index" [value]="exercise">
+            <div>
+              {{exercise.name}}
+              <button mat-stroked-button style="margin-left: 20px" mat-button (click)="configureExercise(i)">Редактировать подходы</button>
+              </div>
 
 
+              <table style="margin-left:350px">
+                <tr>
+                  <td style="padding-right:10px"></td>
+                  <td style="padding-right:10px">Вес</td>
+                  <td style="padding-right:10px">Повторения</td>
+                  <td>Длительность</td>
+                </tr>
 
+                <tr *ngFor="let set of sets[i]; let j = index">
+                  <td align="left"> {{j}}.  </td>
+                  <td align="center"> {{set.weight}}</td>
+                  <td align="center"> {{set.count}}</td>
+                  <td align="center"> {{set.minutesElapsed}}</td>
+                </tr>
+              </table>
+            <br />
+            <br />
+
+          </li>
+        </ul>
+</div>
+</div>

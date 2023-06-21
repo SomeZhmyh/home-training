@@ -57,14 +57,14 @@ export class ExerciseComponent implements OnInit {
   addExercise() {
 
     let dialogRef = this.dialog.open(AddExercisesComponent, {
-      height: '400px',
+      height: '1000px',
       width: '600px',
     });
   }
   showDetails(model: ExercisesModel) {
     let dialogRef = this.dialog.open(ExerciseDetailsComponent, {
-      height: '400px',
-      width: '600px',
+      height: '1000px',
+      width: '800px',
       data: model
     });
   }

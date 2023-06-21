@@ -1,5 +1,41 @@
 
 <body [class]="cookieService.OS.S.theme.obs | async">
+
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4" aria-label="Eighth navbar example">
+        <div class="container">
+          <a class="navbar-brand" >HomeTraining</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarsExample07">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/progress">Прогресс</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/programs">Программы</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/exercises">Упражнения</a>
+              </li>
+            </ul>
+
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/login">Войти</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/register">Регистрация</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <router-outlet></router-outlet>
+
+</body>
+  <!--
   <mat-sidenav-container class="example-container" >
     <mat-sidenav #sidenav mode="side">
 
@@ -43,65 +79,7 @@
       <h2>Электронный журнал старосты</h2>
       <p><button mat-button (click)="sidenav.toggle()">Открыть меню</button></p>
       <router-outlet></router-outlet>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
 
-</body>
+    </mat-sidenav-content>
+  </mat-sidenav-container> -->
+

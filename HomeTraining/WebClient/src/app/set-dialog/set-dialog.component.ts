@@ -35,19 +35,17 @@ export class SetDialogComponent implements OnInit {
 
   addSet() {
     let date: Date = this.currentDate;
-    date.setDate(date.getDate() + 1);
     let set: UserExercisesModel = {
       id: 0,
       userId: 0,
       exerciseId: this.currentExercise.id,
-      date: date,
+      date: date.toISOString(),
       weight: this.weight,
       count: this.count,
       minutesElapsed: this.minutesElapsed
     }
     this._userExerciseService.addSet(set).subscribe(() => {
       this.refresh();
-      date.setDate(date.getDate() - 1);
     });
   }
 }
